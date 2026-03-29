@@ -30,6 +30,9 @@
             rel="stylesheet"
         />
       <script type="76e3b03515b379b1a7bf74c2-module" crossorigin src="./assets/index-CQr--9fV.js"></script>
+      <script>
+        window.__VIBE_LAYOUT__ = true;
+      </script>
       <link rel="stylesheet" crossorigin href="./assets/index-DM2xrEq9.css">
     </head>
 
@@ -4786,6 +4789,36 @@
                 </div>
             </footer>
         </div>
+        <script>
+            (function () {
+                const applyVibeLayout = () => {
+                    document.body.classList.add("vibe-layout");
+                    const app = document.querySelector(".app-container");
+                    if (app) app.classList.add("vibe-shell");
+
+                    const searchInput = document.querySelector("#search-input, .search-input, input[type='search']");
+                    if (searchInput && !searchInput.placeholder) searchInput.placeholder = "Search any song";
+
+                    const title = document.querySelector(".now-playing-bar .title");
+                    if (title && /select a song/i.test(title.textContent || "")) title.textContent = "Not Playing";
+
+                    const subtitle = document.querySelector(".now-playing-bar .artist");
+                    if (subtitle && !(subtitle.textContent || "").trim()) subtitle.textContent = "Try searching on the right";
+                };
+
+                const boot = () => {
+                    applyVibeLayout();
+                    const observer = new MutationObserver(() => applyVibeLayout());
+                    observer.observe(document.body, { childList: true, subtree: true });
+                };
+
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", boot, { once: true });
+                } else {
+                    boot();
+                }
+            })();
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/pocketbase@0.21.3/dist/pocketbase.umd.js" type="76e3b03515b379b1a7bf74c2-text/javascript"></script>
     <!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "077917e47d1d4a72a936f36d4fb9bbca"}' type="76e3b03515b379b1a7bf74c2-text/javascript"></script><!-- Cloudflare Pages Analytics --><script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="76e3b03515b379b1a7bf74c2-|49" defer></script></body>
 </html>

@@ -107,3 +107,191 @@ input[type="search"],
 #fs-next-btn{
   color:#f1f4f8;
 }
+
+/* Layout overhaul v2: desktop split-player shell matching requested vibe */
+@media (min-width: 960px){
+  body{padding:16px !important;}
+
+  .app-container{
+    grid-template:"player main" 1fr / minmax(360px,46%) 1fr !important;
+    gap:16px;
+    height:calc(100dvh - 32px);
+  }
+
+  .sidebar,
+  #sidebar-overlay{
+    display:none !important;
+  }
+
+  .main-content{
+    grid-area:main;
+    margin:0 !important;
+    padding:16px !important;
+    border-radius:28px;
+    min-height:0;
+    overflow:auto;
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+  }
+
+  .main-header,
+  .search-bar,
+  .search-results,
+  .track-list,
+  .queue-list,
+  .playlist-list,
+  #search-results,
+  #queue-list,
+  #lyrics-container{
+    border-radius:18px !important;
+  }
+
+  .now-playing-bar{
+    grid-area:player;
+    position:relative !important;
+    left:auto !important;
+    bottom:auto !important;
+    width:100% !important;
+    height:100% !important;
+    min-height:0;
+    display:flex !important;
+    flex-direction:column;
+    gap:14px;
+    padding:16px !important;
+    border-radius:28px !important;
+    border:1px solid rgba(255,255,255,.12) !important;
+    background:linear-gradient(160deg,#1f293c 0%,#1a2335 100%) !important;
+    animation:none !important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+    backdrop-filter:none !important;
+  }
+
+  .now-playing-bar .track-info{
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    gap:10px;
+    min-height:0;
+    width:100%;
+  }
+
+  .now-playing-bar .track-info .cover{
+    width:100% !important;
+    aspect-ratio:1/1;
+    height:auto !important;
+    object-fit:cover;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.08);
+    background:#394050;
+  }
+
+  .now-playing-bar .track-info .details{
+    width:100%;
+  }
+
+  .now-playing-bar .track-info .title{
+    font-size:2rem;
+    font-weight:700;
+    line-height:1.15;
+  }
+
+  .now-playing-bar .track-info .artist,
+  .now-playing-bar .track-info .album{
+    color:var(--muted-foreground);
+    font-size:1.1rem;
+  }
+
+  .now-playing-bar .player-controls{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    margin-top:auto;
+  }
+
+  .now-playing-bar .player-controls .buttons{
+    justify-content:center;
+    gap:28px;
+  }
+
+  .now-playing-bar .player-controls .buttons button{
+    width:64px;
+    height:64px;
+    border-radius:999px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:transparent;
+  }
+
+  .now-playing-bar .player-controls .play-pause-btn{
+    width:86px !important;
+    height:86px !important;
+    background:#eef2f8 !important;
+    color:#1e283a !important;
+  }
+
+  .now-playing-bar .progress-container{
+    width:100%;
+    grid-template-columns:50px 1fr 50px;
+    gap:10px;
+    align-items:center;
+  }
+
+  .now-playing-bar .progress-bar{
+    height:10px;
+    border-radius:999px;
+    background:#c7cbd4b8 !important;
+  }
+
+  .now-playing-bar .progress-fill{
+    background:#f0f4fa !important;
+  }
+
+  .now-playing-bar .volume-controls{
+    width:100%;
+    margin-top:auto;
+  }
+
+  .now-playing-bar .player-actions-row{
+    justify-content:space-between;
+    gap:8px;
+  }
+
+  .now-playing-bar .player-actions-row button,
+  .now-playing-bar .volume-slider-row button{
+    color:#cfd7e4;
+    opacity:.9;
+  }
+
+  .search-bar,
+  #search-input,
+  .search-input{
+    min-height:58px;
+    font-size:1.05rem;
+    padding-inline:14px;
+  }
+
+  .track-list-item,
+  .queue-item,
+  .playlist-item,
+  .song-item,
+  .track-item,
+  .search-result-item{
+    padding:12px !important;
+    border-radius:16px !important;
+    background:rgba(255,255,255,.07) !important;
+  }
+}
+
+@media (max-width: 959px){
+  .app-container{grid-template:"main" 1fr "player" auto / 1fr !important;}
+  .sidebar{display:none !important;}
+  .main-content{margin:8px !important;border-radius:20px;}
+  .now-playing-bar{left:8px !important;right:8px;width:auto !important;border-radius:20px !important;}
+}
+
+/* Runtime layout hooks from index/js bootstrap */
+body.vibe-layout .app-container.vibe-shell{isolation:isolate;}
+body.vibe-layout-ready .main-content{scrollbar-gutter:stable both-edges;}
+html[data-vibe-layout="1"] .main-header{position:sticky;top:0;z-index:5;background:linear-gradient(180deg,rgba(28,37,54,.96),rgba(28,37,54,.78));padding:6px;border-radius:14px;}

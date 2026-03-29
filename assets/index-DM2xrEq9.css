@@ -364,3 +364,95 @@ html[data-vibe-layout="1"] .playlist-item:hover,
 html[data-vibe-layout="1"] .search-result-item:hover{
   background:rgba(139,170,232,.23) !important;
 }
+
+/* Stability + polish fixes (title overflow, icon squish, control sizing) */
+html[data-vibe-layout="1"] .now-playing-bar,
+html[data-vibe-layout="1"] .now-playing-bar *{
+  min-width:0;
+}
+
+html[data-vibe-layout="1"] .now-playing-bar .track-info .details{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+html[data-vibe-layout="1"] .now-playing-bar .track-info .title{
+  font-size:clamp(1.15rem,1.8vw,1.55rem) !important;
+  line-height:1.25 !important;
+  max-width:100%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+html[data-vibe-layout="1"] .now-playing-bar .track-info .artist,
+html[data-vibe-layout="1"] .now-playing-bar .track-info .album{
+  font-size:clamp(.92rem,1.3vw,1.06rem) !important;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+html[data-vibe-layout="1"] .now-playing-bar .player-controls .buttons{
+  align-items:center;
+}
+
+html[data-vibe-layout="1"] .now-playing-bar .player-controls .buttons button{
+  width:56px !important;
+  height:56px !important;
+  min-width:56px;
+  min-height:56px;
+}
+
+html[data-vibe-layout="1"] .now-playing-bar .player-controls .play-pause-btn{
+  width:74px !important;
+  height:74px !important;
+  min-width:74px;
+  min-height:74px;
+}
+
+html[data-vibe-layout="1"] .now-playing-bar button svg,
+html[data-vibe-layout="1"] .now-playing-bar .buttons button svg{
+  width:26px !important;
+  height:26px !important;
+  flex-shrink:0;
+}
+
+html[data-vibe-layout="1"] .now-playing-bar .play-pause-btn svg{
+  width:30px !important;
+  height:30px !important;
+}
+
+html[data-vibe-layout="1"] .now-playing-bar .player-actions-row,
+html[data-vibe-layout="1"] .now-playing-bar .volume-slider-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+html[data-vibe-layout="1"] .track-item,
+html[data-vibe-layout="1"] .track-list-item,
+html[data-vibe-layout="1"] .queue-item,
+html[data-vibe-layout="1"] .search-result-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+html[data-vibe-layout="1"] .track-item img,
+html[data-vibe-layout="1"] .track-list-item img,
+html[data-vibe-layout="1"] .queue-item img,
+html[data-vibe-layout="1"] .search-result-item img{
+  width:56px;
+  height:56px;
+  object-fit:cover;
+  border-radius:10px;
+  flex-shrink:0;
+}
+
+@media (max-width: 1200px){
+  html[data-vibe-layout="1"] .now-playing-bar .track-info .title{font-size:1.15rem !important;}
+  html[data-vibe-layout="1"] .now-playing-bar .player-controls .buttons{gap:18px !important;}
+}
